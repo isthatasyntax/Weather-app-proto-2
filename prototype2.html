@@ -1,0 +1,94 @@
+
+<!doctype html>
+<html lang="en">
+    <style>
+        body{
+          background-image: url('https://img.freepik.com/free-vector/paper-style-3d-clouds-background-blue-sky_1017-38298.jpg?w=2000');
+        }
+        </style>
+        
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <body>
+        <br><br><center><h1 style="font-size:60px;">Current Weather Data In Liverpool</h1>
+        <p id="detail" style="font-size:30px;font-family: 'Times New Roman', Times, serif;">Wait till we fetch the weather for you...............</p>
+        <img id="png" src="http://openweathermap.org/img/wn/10d@2x.png" height="150px" width="150px">
+        <p id="temp" style="font-size: 65px;color: rgb(44, 42, 44)"></p>
+        <p id="wind" style="font-size:35px ;"></p>
+        <p id="Humidity" style="font-size:25px ;"></p>
+        <p id="pressure" style="font-size:25px ;"></center>
+        
+        
+        
+
+    </body>
+
+    <script>
+        fetch('https://mi-linux.wlv.ac.uk/~2241296/my-api.php?city=liverpool')
+        .then(response=>response.json())
+        .then(response=>{
+            console.log(response);
+
+            document.getElementById('detail').innerHTML= 'The Current weather shows '+ response.weather_description + ' today';
+            document.getElementById('temp').innerHTML= response.weather_temperature+' <span>&#8451;</span>';
+            document.getElementById('wind').innerHTML= 'Current Wind Speed Is '+ response.weather_wind+' m/s';
+            document.getElementById('pressure').innerHTML= 'Current Pressure Is '+ response.weather_pressure +'hPa';
+            document.getElementById('Humidity').innerHTML= 'It is '+ response.weather_humidity +'% Humid';
+            x=response.icon;
+            
+
+            if(x=="01d"){
+                document.getElementById('png').src='http://openweathermap.org/img/wn/01d@2x.png';
+
+            }
+            if(x=="02d"){ 
+                document.getElementById('png').src="http://openweathermap.org/img/wn/04d@2x.png";
+
+            }
+            if(x=="50d"){
+                document.getElementById('png').src='http://openweathermap.org/img/wn/50d@2x.png'; 
+
+            }
+            if(x=="13d"){
+                document.getElementById('png').src='http://openweathermap.org/img/wn/13d@2x.png'; 
+
+            }
+            if(x=="11d"){
+                document.getElementById('png').src='http://openweathermap.org/img/wn/11d@2x.png'; 
+
+            }
+            if(x=="10d"){
+                document.getElementById('png').src='http://openweathermap.org/img/wn/10d@2x.png'; 
+
+            }
+            if(x=="09d"){
+                document.getElementById('png').src='http://openweathermap.org/img/wn/09d@2x.png'; 
+
+            }
+            if(x=="04d"){
+                document.getElementById('png').src='http://openweathermap.org/img/wn/04d@2x.png'; 
+
+            }
+            if(x=="03d"){
+                document.getElementById('png').src='http://openweathermap.org/img/wn/03d@2x.png'; 
+
+            }
+
+
+
+
+
+        })
+        .catch(err=>{
+            console.log(err)
+
+        });
+    </script>
+
+
+
+
+
+    
+    
+</html>
+
